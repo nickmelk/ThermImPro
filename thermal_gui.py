@@ -99,6 +99,9 @@ class ThermalGUI:
         plt.style.use("dark_background")
         self.window = plt.figure(num="ThermImPro", figsize=(14.0, 7.0))
 
+        manager = plt.get_current_fig_manager()
+        manager.window.iconphoto(False, tk.PhotoImage(file="icon.png"))
+
         gridspec = self.window.add_gridspec(nrows=3, ncols=3)
 
         self.thermal_image_panel = self.window.add_subplot(gridspec[:, :2])

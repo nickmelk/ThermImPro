@@ -21,6 +21,7 @@ Includes ThermalImage class and temperature conversion functions.
 """
 
 
+import sys
 from dataclasses import dataclass, field
 from typing import Self
 import subprocess
@@ -29,6 +30,7 @@ import numpy as np
 import cv2
 
 
+CREATIONFLAGS = subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
 METADATA_KEYS = {
     "Emissivity",
     "Object Distance",
@@ -169,14 +171,17 @@ class ThermalImage:
         Extract raw thermal data from the radiometric input using
         ExifTool.
         """
-        
+
         try:
             process = subprocess.run(
                 args=["exiftool", "-rawthermalimage", "-b", self.file_path],
-                capture_output=True, check=True
+                creationflags=CREATIONFLAGS, capture_output=True, check=True
             )
         except FileNotFoundError:
-            raise RuntimeError("ExifTool not installed or missing from PATH")
+            raise RuntimeError(
+                "ExifTool not installed or missing from PATH.\n"
+                "Install it from: https://exiftool.org/"
+            )
         except subprocess.CalledProcessError:
             raise RuntimeError("ExifTool failed to process the file")
 
@@ -207,7 +212,8 @@ class ThermalImage:
         """
 
         process = subprocess.run(
-            args=["exiftool", self.file_path], capture_output=True, text=True
+            args=["exiftool", self.file_path], creationflags=CREATIONFLAGS,
+            capture_output=True, text=True
         )
 
         for line in process.stdout.splitlines():

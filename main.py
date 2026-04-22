@@ -18,6 +18,8 @@
 """ThermImPro (Thermal Image Processing) main script."""
 
 
+import matplotlib
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 
 from thermal_gui import ThermalGUI
