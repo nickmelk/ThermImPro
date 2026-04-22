@@ -38,12 +38,12 @@ winget install exiftool
 
 ### Linux
 
-Install ExifTool using one of the following commands.
+Install ExifTool and Tkinter if not installed yet, using one of the following commands.
 
 Ubuntu/Debian:
 
 ```
-sudo apt install libimage-exiftool-perl python3-tk
+sudo apt install python3-tk libimage-exiftool-perl
 ```
 
 Arch Linux:
@@ -95,8 +95,6 @@ Linux:
 ```
 python -m nuitka --mode=standalone --enable-plugin=tk-inter --include-data-file=icon.png=icon.png --output-filename=thermimpro main.py
 ```
-
-fuse exiftool patchelf
 
 ## References
 
