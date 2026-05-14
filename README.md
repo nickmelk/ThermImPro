@@ -7,7 +7,7 @@ A Python GUI tool for loading, viewing, and analyzing radiometric thermal images
 - Load radiometric thermal images
 - View temperature values on hover
 - Switch between four available color palettes
-- Adjust color distribution
+- Adjust temperature range
 - Toggle hot and cold spots
 - Display maximum, minimum, and average temperatures
 - Save images with applied color palette
